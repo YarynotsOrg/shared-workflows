@@ -26,12 +26,6 @@ runs:
       echo "echo Goodbye" > goodbye.sh
       chmod +x goodbye.sh
      shell: bash
-   - name: Commit script
-     run: |
-      git add goodbye.sh
-      git commit -m "Add goodbye script"
-      git push
-     shell: bash
    - name: Run goodbye.sh
-     run: .github/actions/goodbye.sh
+     run: goodbye.sh
      shell: bash
