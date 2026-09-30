@@ -21,6 +21,17 @@ runs:
      id: random-number-generator
      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
      shell: bash
+   - name: Setup script
+     run: |
+      echo "echo Goodbye" > goodbye.sh
+      chmod +x goodbye.sh
+     shell: bash
+   - name: Commit script
+     run: |
+      git add goodbye.sh
+      git commit -m "Add goodbye script"
+      git push
+     shell: bash
    - name: Run goodbye.sh
      run: .github/actions/goodbye.sh
      shell: bash
