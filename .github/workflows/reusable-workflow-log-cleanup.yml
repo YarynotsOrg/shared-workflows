@@ -4,10 +4,6 @@ description: Use for cleanup log files
 on:
   workflow_call:
     inputs:
-      repo-owner:
-        description: The repo owner name.
-        required: true
-        type: string
       repo-name:
         description: The repo name.
         required: true
@@ -23,7 +19,7 @@ jobs:
 
     - name: execute cleanup commands       
       run: |
-        echo "Cleaning up log files in ${{ inputs.repo-owner }}/${{ inputs.repo-name }}"
+        echo "Cleaning up log files in ${{ inputs.repo-name }}"
         # Add your log cleanup commands here
       shell: bash
 
