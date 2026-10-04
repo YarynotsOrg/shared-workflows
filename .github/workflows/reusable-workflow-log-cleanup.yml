@@ -20,6 +20,7 @@ jobs:
     - name: execute cleanup commands       
       run: |
         echo "Cleaning up log files in ${{ inputs.repo-name }}"
-        # Add your log cleanup commands here
+        $workflowRuns = gh api repos/$Owner/$Repo/actions/runs --paginate --jq '.workflow_runs[].id'
+        foreach($runId in $workflowRuns){gh api repos/$Owner/$Repo/actions/runs/$runId -X DELETE}
       shell: bash
 
