@@ -17,10 +17,15 @@ jobs:
 
     steps:
 
+    - name: echo gh version
+      run: gh --version
+              
+    - name: authenticate
+      run: gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
+
     - name: execute cleanup commands       
       run: |
         echo "Cleaning up log files in ${{ inputs.repo-name }}"
-        gh --version
         $workflowRuns = gh api repos/${{ inputs.repo-name }}/actions/runs --paginate --jq '.workflow_runs[].id'
         foreach($runId in $workflowRuns){gh api repos/$Owner/$Repo/actions/runs/$runId -X DELETE}
       shell: bash
