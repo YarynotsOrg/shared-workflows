@@ -17,15 +17,9 @@ jobs:
     
     steps:
 
-    - uses: actions/checkout@v4
-      
-    - name: echo gh version
-      run: gh --version
-
-    - name: authenticate
-      run: gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
-
-    - name: execute cleanup commands       
+    - name: execute cleanup commands
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         echo "Cleaning up log files in ${{ inputs.repo-name }}"
         $workflowRuns = gh api repos/${{ inputs.repo-name }}/actions/runs --paginate --jq '.workflow_runs[].id'
