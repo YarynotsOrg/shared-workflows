@@ -14,8 +14,7 @@ jobs:
   cleanup:
 
     runs-on: windows-latest
-    #permissions:
-      #write-all      
+    permissions: write-all      
       
     steps:
 
