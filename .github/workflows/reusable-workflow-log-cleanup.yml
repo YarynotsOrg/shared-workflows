@@ -13,7 +13,7 @@ jobs:
   
   cleanup:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
 
@@ -23,6 +23,6 @@ jobs:
       run: |
         echo "Cleaning up log files in ${{ inputs.repo-name }}"
         $workflowRuns = gh api repos/${{ inputs.repo-name }}/actions/runs --paginate --jq '.workflow_runs[].id'
-        foreach($runId in $workflowRuns){gh api repos/$Owner/$Repo/actions/runs/$runId -X DELETE}
+        foreach($runId in $workflowRuns){gh api repos/${{ inputs.repo-name }}/actions/runs/$runId -X DELETE}
       shell: bash
 
