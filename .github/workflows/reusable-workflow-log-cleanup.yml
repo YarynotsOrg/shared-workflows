@@ -20,7 +20,7 @@ jobs:
         GH_TOKEN: ${{ github.token }}
       run: |
         echo "Cleaning up log files in ${{ inputs.repo-name }}"
-        $workflowRuns = gh api repos/${{ inputs.repo-name }}/actions/runs --paginate --jq '.workflow_runs[].id'
+        $workflowRuns = gh api repos/${{ inputs.repo-name }}/actions/runs --paginate --jq 'select(.status != "queued") | workflow_runs[].id'
         foreach($runId in $workflowRuns){gh api repos/${{ inputs.repo-name }}/actions/runs/$runId -X DELETE}
       shell: pwsh
 
