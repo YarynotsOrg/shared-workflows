@@ -1,0 +1,27 @@
+name: send slack message
+description: Use for sending slack message
+
+on:
+  workflow_call:
+    inputs:
+      slack-webhook-url:
+        description: The slack webhook url.
+        required: true
+        type: string
+      message:
+        description: The message to send.
+        required: true
+        type: string
+
+jobs:
+  
+  send-slack-message:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - name: send slack message
+      env:
+        SLACK_WEBHOOK_URL: ${{ inputs.slack-webhook-url }}
+        MESSAGE: ${{ inputs.message }}
+      run: |
+        curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$MESSAGE\"}" $SLACK_WEBHOOK_URL
