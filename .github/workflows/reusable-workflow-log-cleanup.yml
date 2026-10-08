@@ -22,6 +22,5 @@ jobs:
         echo "Cleaning up log files in ${{ inputs.repo-name }}"
         $workflowRuns = gh api repos/${{ inputs.repo-name }}/actions/runs --paginate --jq '{runId: .workflow_runs[].id, status: .workflow_runs[].status}' | ConvertFrom-Json
         foreach($run in $workflowRuns) {if (!$run.status.Equals("queued")) {Write-Host "Deleting run: $run.runId on ${{ inputs.repo-name }}"; gh api repos/${{ inputs.repo-name }}/actions/runs/$run.runId -X DELETE};}
-
       shell: pwsh
 
