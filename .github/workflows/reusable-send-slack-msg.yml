@@ -22,7 +22,7 @@ jobs:
     steps:
     - name: send slack message
       env:
-        SLACK_WEBHOOK_URL: ${{ inputs.slack-webhook-url }}
+        SLACK_WEBHOOK_URL: ${{ secrets.slack-webhook-url }}
         MESSAGE: ${{ inputs.message }}
       run: |
         curl -X POST -H 'Content-type: application/json' --data "{\"text\":\"$MESSAGE\"}" $SLACK_WEBHOOK_URL
