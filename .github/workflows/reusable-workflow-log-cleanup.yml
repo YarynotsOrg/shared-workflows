@@ -12,7 +12,7 @@ on:
 jobs:
   
   cleanup:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
       
     steps:
     - name: execute cleanup commands
