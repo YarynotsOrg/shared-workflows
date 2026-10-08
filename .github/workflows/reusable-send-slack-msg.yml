@@ -4,14 +4,15 @@ description: Use for sending slack message
 on:
   workflow_call:
     inputs:
+        message:
+            description: The slack message to send.
+            required: true
+            type: string
+    secrets:
       slack-webhook-url:
         description: The slack webhook url.
         required: true
-        type: string
-      message:
-        description: The message to send.
-        required: true
-        type: string
+
 
 jobs:
   
